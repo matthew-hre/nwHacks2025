@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# nwHacks 2025
 
-## Getting Started
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-First, run the development server:
+## Rough Brainstorming
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+We want people to read more. We want to create a platform to encourage more
+people to read books. Current platforms like Goodreads are less about personal
+growth and achievement, and more about artificial ratings and metrics. Our
+platform aims to give readers a fun and interactive way to log their favorite
+books, and showcase their literary journeys.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## User Flow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Roughly, the dream user flow for our application will be:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. User signs up / into their account.
+2. User is presented with their bookshelf, which is a visual representation of
+   their reading journey.
+3. User is able to add a new book to their shelf, either through barcode
+   scanning or by title.
+4. User can now see their new book on their shelf.
+5. The new book is now counted towards the user's "rewards", and the user can
+   redeem rewards for decorations and skins for their bookshelf.
 
-## Learn More
+- Rewards could be distributed on a weekly/biweekly/monthly basis
+- Decorations could range from trinkets to display on the shelf to different
+  themes of the shelf itself (wood type, background, "gothic", whatever)
 
-To learn more about Next.js, take a look at the following resources:
+## Additional (absolute longshot) Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Some extra functionality that could be super cool:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Users can add "friends" and see their shelves / status when they finish a new
+  book.
+- Users can have "readlists" of books they want to read (would show up as ghost
+  books)
+- Users can have an interaction to share their shelf directly to Instagram
+- Users can click their cat / pet / personal librarian / some anthropomorphic
+  nightmare creature that can use an LLM to recommend books, like texting a
+  friend.
 
-## Deploy on Vercel
+## Rough Timeline
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] Set up initial project in Next
+- [ ] Create routes for all major pages
+  - [ ] Log In
+  - [ ] Sign Up
+  - [ ] Bookshelf (home)
+  - [ ] Add Book
+  - [ ] Rewards Page
+  - [ ] Shop Page
+- [ ] Hook up DB (Firebase / Supabase)
+- [ ] Set up basic auth
+- [ ] Brainstorm different bookshelf graphic ideas
+- [ ] Implement scanning w/ ISBN API
+- [ ] Add scanned books to user's DB
+- [ ] Display / render books onto the shelf
+  - [ ] Display / render decorations onto the shelf
+- [ ] Implement rewards page
+  - [ ] Visual design
+  - [ ] Functionally
+- [ ] Implement shop
+  - [ ] Display a collection(s) of items for purchase
+  - [ ] Design a wide array of different assets that can be purchased
