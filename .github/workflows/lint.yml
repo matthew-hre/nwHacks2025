@@ -2,7 +2,7 @@ on: [pull_request]
 name: Lint
 jobs:
   alejandra:
-    runs-on: namespace-profile-default
+    runs-on: namespace-profile-nwhacks2025
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
         run: nix develop -c alejandra --check .
 
   prettier:
-    runs-on: namespace-profile-default
+    runs-on: namespace-profile-nwhacks2025
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
