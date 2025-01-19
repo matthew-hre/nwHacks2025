@@ -36,7 +36,7 @@ function NavLink({ href, src, alt, label }: NavLinkProps) {
 export default function Navbar() {
   return (
     <nav className="bottom-0 fixed w-full bg-white shadow-lg z-10">
-      <div className="container mx-auto px-6 py-2">
+      <div className="container mx-auto px-2 py-2">
         <div className="flex justify-between items-center">
           <NavLink href="/" src={shelf_logo.src} alt="shelf" label="Shelf" />
           <NavLink

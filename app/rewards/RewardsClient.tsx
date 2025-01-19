@@ -2,7 +2,7 @@
 
 export default function RewardsClient() {
   return (
-    <div className="p-8 flex flex-col items-center space-y-4 overflow-x-hidden pb-24">
+    <div className="p-8 flex flex-col items-center space-y-4 overflow-x-hidden pb-36">
       <div className="py-12 relative">
         <div className="w-[800px] h-40 bg-white rotate-12 flex flex-row items-center justify-center shadow-sm">
           <div
