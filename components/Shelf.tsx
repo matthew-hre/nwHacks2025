@@ -1,10 +1,10 @@
 "use client"; // Ensure this runs on the client side
 
-interface FetchIsbnsProps {
+interface ShelfProps {
   books: { books?: { book_name?: string } }[];
 }
 
-export default function FetchIsbnsClient({ books }: FetchIsbnsProps) {
+export default function Shelf({ books }: ShelfProps) {
   return (
     <div>
       <h2>{"Books You've Read:"}</h2>

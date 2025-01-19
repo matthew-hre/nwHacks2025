@@ -10,17 +10,37 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const fetchBooks = async () => {
+    const { data, error } = await supabase
+      .from("user_id_isbn")
+      .select(
+        `
+          books:isbn(
+            book_name
+          )
+        `
+      )
+      .eq("id", user?.id); // Filter by the user ID
+
+    if (error || !data) {
+      return [];
+    }
+
+    if (data) {
+      return data as { books?: { book_name?: string } }[];
+    }
+  };
+
+  const books = await fetchBooks();
+
+  if (!books) {
+    return <p>Error finding books.</p>;
+  }
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       {user ? (
         <>
-          <p>
-            Welcome, <strong>{user.email}</strong>!
-          </p>
-          <p>
-            Your User ID is: <strong>{user.id}</strong>
-          </p>
-          {/* Render FetchIsbns and pass user.id */}
           <form>
             <button formAction={signOut}>Sign Out</button>
           </form>
