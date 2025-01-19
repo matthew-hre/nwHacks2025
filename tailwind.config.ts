@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        brand: {
+          brown: "var(--brand-brown)",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--myanmar)", "sans-serif"],
       },
     },
   },

@@ -2,9 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client"; // Import Supabase client creation function
+import { redirect } from "next/navigation";
 
-const AddBookName: React.FC = () => {
+export default function AddBookName({
+  addIsbnToDb,
+}: {
+  addIsbnToDb: (formData: FormData) => void;
+}) {
   const [searchQuery, setSearchQuery] = useState(""); // State for user input
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedBook, setSelectedBook] = useState<string | null>(null); // State for selected book
   const [suggestions, setSuggestions] = useState<string[]>([]); // State for autofill suggestions
   const [error, setError] = useState(""); // State for error handling
@@ -42,49 +48,39 @@ const AddBookName: React.FC = () => {
     fetchSuggestions();
   }, [searchQuery]);
 
-  const handleAddBook = () => {
-    if (selectedBook) {
-      console.log(`Book added: ${selectedBook}`);
-      // Perform any action here, e.g., save to a database or update state
-    } else {
-      setError("Please select a book before adding.");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!searchQuery) {
+      setError("Please enter a book name.");
+      return;
     }
+
+    const formData = new FormData();
+    formData.append("bookName", searchQuery); // Append the search query to the form data
+
+    await addIsbnToDb(formData); // Call the parent function to add the book to the DB
+
+    redirect("/"); // Redirect to the home page after adding
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Search for a Book:</h1>
+    <form className="text-center mt-12" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-bold mb-4">Search for a Book:</h1>
       <input
         type="text"
+        name="bookName"
         placeholder="Enter book name"
         value={searchQuery}
         onChange={(e) => {
           setSearchQuery(e.target.value);
           setSelectedBook(null); // Clear selected book when the query changes
         }}
-        style={{
-          padding: "10px",
-          width: "300px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-          marginBottom: "10px",
-        }}
+        className="p-2 w-72 rounded border border-gray-300 mb-2"
       />
-      {error && <p style={{ color: "red", marginTop: "20px" }}>{error}</p>}
+      {error && <p className="text-red-500 mt-5">{error}</p>}
       {suggestions.length > 0 && (
-        <ul
-          style={{
-            listStyleType: "none",
-            padding: 0,
-            marginTop: "10px",
-            maxHeight: "200px",
-            overflowY: "auto",
-            width: "300px",
-            margin: "0 auto",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
-        >
+        <ul className="list-none p-0 mt-2 max-h-52 overflow-y-auto w-72 mx-auto border border-gray-300 rounded">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
@@ -92,33 +88,16 @@ const AddBookName: React.FC = () => {
                 setSearchQuery(suggestion);
                 setSelectedBook(suggestion); // Set the selected book
               }}
-              style={{
-                padding: "10px",
-                cursor: "pointer",
-                borderBottom: "1px solid #eee",
-              }}
+              className="p-2 cursor-pointer border-b border-gray-200"
             >
               {suggestion}
             </li>
           ))}
         </ul>
       )}
-      <button
-        onClick={handleAddBook}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#0070f3",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginTop: "20px",
-        }}
-      >
+      <button className="p-2 mt-5 bg-blue-500 text-white border-none rounded cursor-pointer">
         Add Book
       </button>
-    </div>
+    </form>
   );
-};
-
-export default AddBookName;
+}
