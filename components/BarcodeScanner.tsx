@@ -19,7 +19,11 @@ interface ScannerProps {
   onClosed?: () => void;
 }
 
-export default function Home() {
+export default function BarcodeScannerComponent({
+  addIsbnToDb,
+}: {
+  addIsbnToDb: (FormData: FormData) => void;
+}) {
   const [isActive, setIsActive] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
@@ -35,31 +39,33 @@ export default function Home() {
         text =
           text + result.barcodeFormatString + ": " + result.barcodeText + "\n";
       }
-      alert(text);
+      const formData = new FormData();
+      formData.append("isbn", results[0].barcodeText);
+      addIsbnToDb(formData);
       setIsActive(false);
     }
   };
 
   return (
-    <main>
-      <div className="app">
-        <h2>Next.js Barcode Scanner</h2>
-        {initialized ? (
-          <button onClick={toggleScanning}>
-            {isActive ? "Stop Scanning" : "Start Scanning"}
-          </button>
-        ) : (
-          <div>Initializing...</div>
-        )}
-        <div className="barcodeScanner">
-          <BarcodeScanner
-            onInitialized={() => setInitialized(true)}
-            isActive={isActive}
-            onScanned={onScanned}
-          />
-        </div>
+    <div className="w-full flex flex-col items-center justify-center">
+      {initialized ? (
+        <button
+          onClick={toggleScanning}
+          className="bg-brand-brown text-white px-4 py-2 rounded-md"
+        >
+          {isActive ? "Stop Scanning" : "Scan a Barcode"}
+        </button>
+      ) : (
+        <div>Initializing...</div>
+      )}
+      <div className="w-full p-8">
+        <BarcodeScanner
+          onInitialized={() => setInitialized(true)}
+          isActive={isActive}
+          onScanned={onScanned}
+        />
       </div>
-    </main>
+    </div>
   );
 }
 
@@ -134,7 +140,7 @@ const BarcodeScanner: React.FC<ScannerProps> = (props) => {
       if (decoding.current === false && reader.current && enhancer.current) {
         decoding.current = true;
         const results = await reader.current.decode(
-          enhancer.current.getFrame(),
+          enhancer.current.getFrame()
         );
         if (props.onScanned) {
           props.onScanned(results);
@@ -156,7 +162,7 @@ const BarcodeScanner: React.FC<ScannerProps> = (props) => {
   };
 
   return (
-    <div ref={container} className="min-h-screen w-full relative">
+    <div ref={container} className="min-h-[200px] w-full relative">
       <div className="dce-video-container"></div>
       {props.children}
     </div>
