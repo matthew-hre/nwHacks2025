@@ -20,7 +20,7 @@ export default async function Home() {
           books:isbn(
             book_name
           )
-        `,
+        `
       )
       .eq("id", user?.id); // Filter by the user ID
 
@@ -41,15 +41,14 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      {/* <img src={logo.src} alt="shelf" className="h-12 w-12" /> */}
       <Shelf books={books} />
-      <MemoPad /> {/* Add MemoPad here */}
       <p className="text-lg font-sans text-brand-brown mb-2">
         your goal this year:
       </p>
       <p className="text-4xl font-sans text-brand-brown">
         {books.length > 0 ? `${books.length} / 7` : "start reading!"}
       </p>
+      <MemoPad books={books} />
     </div>
   );
 }

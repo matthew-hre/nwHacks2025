@@ -55,7 +55,7 @@ export default function Shelf({ books }: ShelfProps) {
               i * 4 * scaleFactor, // Scale x position
               0 * scaleFactor, // Scale y position
               imageB.width * scaleFactor, // Scale width
-              scaledBHeight, // Scale height
+              scaledBHeight // Scale height
             );
           }
         };
@@ -66,13 +66,6 @@ export default function Shelf({ books }: ShelfProps) {
   return (
     <div className="w-full">
       <canvas ref={canvasRef} className="w-full p-8" height={200} />
-      <ul>
-        {books.map((record, index: number) => (
-          <li key={index}>
-            {record.books?.book_name || "Book name not found"}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
