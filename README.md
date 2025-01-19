@@ -44,16 +44,16 @@ Some extra functionality that could be super cool:
 
 - [x] Set up initial project in Next
 - [ ] Create routes for all major pages
-  - [ ] Log In
-  - [ ] Sign Up
-  - [ ] Bookshelf (home)
-  - [ ] Add Book
+  - [x] Log In
+  - [x] Sign Up
+  - [x] Bookshelf (home)
+  - [x] Add Book
   - [ ] Rewards Page
   - [ ] Shop Page
-- [ ] Hook up DB (Firebase / Supabase)
-- [ ] Set up basic auth
+- [x] Hook up DB (Firebase / Supabase)
+- [x] Set up basic auth
 - [ ] Brainstorm different bookshelf graphic ideas
-- [ ] Implement scanning w/ ISBN API
+- [x] Implement scanning w/ ISBN API
 - [ ] Add scanned books to user's DB
 - [ ] Display / render books onto the shelf
   - [ ] Display / render decorations onto the shelf
