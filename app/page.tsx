@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Shelf from "@/components/Shelf";
+import MemoPad from "@/components/MemoPad";
 
 // import logo from "@/public/assets/logo.png";
 
@@ -42,6 +43,7 @@ export default async function Home() {
     <div className="flex flex-col items-center min-h-screen">
       {/* <img src={logo.src} alt="shelf" className="h-12 w-12" /> */}
       <Shelf books={books} />
+      <MemoPad /> {/* Add MemoPad here */}
       <p className="text-lg font-sans text-brand-brown mb-2">
         your goal this year:
       </p>
