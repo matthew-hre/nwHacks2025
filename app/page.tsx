@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Shelf from "@/components/Shelf";
 import MemoPad from "@/components/MemoPad";
+import { redirect } from "next/navigation";
 
 // import logo from "@/public/assets/logo.png";
 
@@ -12,6 +13,10 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  if (!user) {
+    redirect("/login");
+  }
+
   const fetchBooks = async () => {
     const { data, error } = await supabase
       .from("user_id_isbn")
@@ -20,7 +25,7 @@ export default async function Home() {
           books:isbn(
             book_name
           )
-        `,
+        `
       )
       .eq("id", user?.id); // Filter by the user ID
 
