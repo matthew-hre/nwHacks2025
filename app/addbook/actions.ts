@@ -185,7 +185,13 @@ export async function processIsbn(bookName: string) {
     (book: { title: string; isbn13: string; authors: string[] }) =>
       book.title === bookName
   );
-  const isbn = book.isbn13;
+  const isbn = book.isbn13
+    ? book.isbn13
+    : book.isbn10
+    ? book.isbn10
+    : book.isbn
+    ? book.isbn
+    : "";
 
   const author = book.authors[0];
 
