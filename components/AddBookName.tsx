@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client"; // Import Supabase clien
 
 const AddBookName: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State for user input
+  const [selectedBook, setSelectedBook] = useState<string | null>(null); // State for selected book
   const [suggestions, setSuggestions] = useState<string[]>([]); // State for autofill suggestions
   const [error, setError] = useState(""); // State for error handling
 
@@ -41,6 +42,15 @@ const AddBookName: React.FC = () => {
     fetchSuggestions();
   }, [searchQuery]);
 
+  const handleAddBook = () => {
+    if (selectedBook) {
+      console.log(`Book added: ${selectedBook}`);
+      // Perform any action here, e.g., save to a database or update state
+    } else {
+      setError("Please select a book before adding.");
+    }
+  };
+
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Search for a Book:</h1>
@@ -48,7 +58,10 @@ const AddBookName: React.FC = () => {
         type="text"
         placeholder="Enter book name"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+          setSelectedBook(null); // Clear selected book when the query changes
+        }}
         style={{
           padding: "10px",
           width: "300px",
@@ -75,7 +88,10 @@ const AddBookName: React.FC = () => {
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
-              onClick={() => setSearchQuery(suggestion)} // Set the selected suggestion as the query
+              onClick={() => {
+                setSearchQuery(suggestion);
+                setSelectedBook(suggestion); // Set the selected book
+              }}
               style={{
                 padding: "10px",
                 cursor: "pointer",
@@ -87,6 +103,20 @@ const AddBookName: React.FC = () => {
           ))}
         </ul>
       )}
+      <button
+        onClick={handleAddBook}
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "#0070f3",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          marginTop: "20px",
+        }}
+      >
+        Add Book
+      </button>
     </div>
   );
 };
