@@ -55,7 +55,7 @@ export default function Shelf({ books }: ShelfProps) {
               i * 4 * scaleFactor, // Scale x position
               0 * scaleFactor, // Scale y position
               imageB.width * scaleFactor, // Scale width
-              scaledBHeight // Scale height
+              scaledBHeight, // Scale height
             );
           }
         };

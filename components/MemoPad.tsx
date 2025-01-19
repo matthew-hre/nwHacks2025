@@ -10,12 +10,11 @@ export default function MemoPad({
   return (
     <div className="text-left mt-5 relative">
       <div className="z-5 absolute top-2 left-2 space-y-3">
-        {
-          books?.map((book, index) => (
-            <p key={index} className="text-2xl font-sans text-brand-brown">
-              {book.books.book_name}
-            </p>
-          )) // Map the books to display the book names
+        {books?.map((book, index) => (
+          <p key={index} className="text-2xl font-sans text-brand-brown">
+            {book.books.book_name}
+          </p>
+        )) // Map the books to display the book names
         }
       </div>
       <img

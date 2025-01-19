@@ -1,4 +1,3 @@
-import SearchByIsbn from "@/components/SearchByIsbn";
 import AddBookName from "@/components/AddBookName";
 
 import { addBookNameToDb, addIsbnToDb } from "./actions";

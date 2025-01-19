@@ -140,7 +140,7 @@ const BarcodeScanner: React.FC<ScannerProps> = (props) => {
       if (decoding.current === false && reader.current && enhancer.current) {
         decoding.current = true;
         const results = await reader.current.decode(
-          enhancer.current.getFrame()
+          enhancer.current.getFrame(),
         );
         if (props.onScanned) {
           props.onScanned(results);

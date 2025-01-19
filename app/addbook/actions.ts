@@ -50,8 +50,6 @@ export async function addIsbnToDb(formData: FormData) {
     .eq("book_isbn", isbn);
 
   if (books && books.length > 0) {
-    const bookName = books[0].book_name;
-
     const { error } = await supabase.from("user_id_isbn").insert([
       {
         id: user?.id,
@@ -158,7 +156,7 @@ export async function processIsbn(bookName: string) {
   // if the book doesn't exist in our DB, we need to add it to the books table first
   const apiKey = process.env.ISBN_API_KEY; // Store your API key in environment variables for security
   const apiUrl = `https://api2.isbndb.com/books/${encodeURIComponent(
-    bookName
+    bookName,
   )}`;
 
   const headers: HeadersInit = {
@@ -182,7 +180,7 @@ export async function processIsbn(bookName: string) {
 
   const book = bookData.books.find(
     (book: { title: string; isbn13: string; authors: string[] }) =>
-      book.title === bookName
+      book.title === bookName,
   );
   const isbn = book.isbn13;
 

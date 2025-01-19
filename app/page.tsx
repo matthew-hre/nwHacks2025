@@ -20,7 +20,7 @@ export default async function Home() {
           books:isbn(
             book_name
           )
-        `
+        `,
       )
       .eq("id", user?.id); // Filter by the user ID
 
@@ -48,7 +48,7 @@ export default async function Home() {
       <p className="text-4xl font-sans text-brand-brown">
         {books.length > 0 ? `${books.length} / 7` : "start reading!"}
       </p>
-      <MemoPad books={books} />
+      <MemoPad books={books as { books: { book_name: string } }[]} />
     </div>
   );
 }
