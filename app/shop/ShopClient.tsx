@@ -10,6 +10,7 @@ import pink from "@/public/assets/plants/pink.png";
 import red from "@/public/assets/plants/red.png";
 
 import worm from "@/public/assets/pets/worm.gif";
+import cat from "@/public/assets/pets/cat.gif";
 
 export default function ShopClient() {
   return (
@@ -67,6 +68,11 @@ export default function ShopClient() {
           <img src={worm.src} alt="worm" className="w-40" />
           <p className="text-3xl absolute bottom-0 mb-10">Joey</p>
           <p className="text-xl absolute bottom-0 mb-2">free. take him.</p>
+        </div>
+        <div className="flex flex-col items-center bg-white rounded-xl py-2 px-4 relative">
+          <img src={cat.src} alt="cat" className="w-40" />
+          <p className="text-3xl absolute bottom-0 mb-10">Cheddar</p>
+          <p className="text-xl absolute bottom-0 mb-2">you wish</p>
         </div>
       </div>
     </div>

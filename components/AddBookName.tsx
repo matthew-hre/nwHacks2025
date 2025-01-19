@@ -65,22 +65,28 @@ export default function AddBookName({
   };
 
   return (
-    <form className="text-center mt-12" onSubmit={handleSubmit}>
-      <h1 className="text-2xl font-bold mb-4">Search for a Book:</h1>
-      <input
-        type="text"
-        name="bookName"
-        placeholder="Enter book name"
-        value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setSelectedBook(null); // Clear selected book when the query changes
-        }}
-        className="p-2 w-72 rounded border border-gray-300 mb-2"
-      />
+    <form className="text-center mt-12 px-8" onSubmit={handleSubmit}>
+      <h1 className="text-3xl font-bold mb-4">Add a Book</h1>
+      <h2 className="text-2xl font-bold mb-4">Search for a Book:</h2>
+      <div className="flex flex-row items-center justify-center">
+        <input
+          type="text"
+          name="bookName"
+          placeholder="Enter book name"
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setSelectedBook(null); // Clear selected book when the query changes
+          }}
+          className="flex-1 rounded border border-brand-brown p-2 active:outline-none focus:outline-none"
+        />
+        <button className="p-2 ml-2 bg-brand-brown text-white border-none rounded cursor-pointer">
+          Add Book
+        </button>
+      </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
       {suggestions.length > 0 && (
-        <ul className="list-none p-0 mt-2 max-h-52 overflow-y-auto w-72 mx-auto border border-gray-300 rounded">
+        <ul className="list-none p-0 mt-2 max-h-52 overflow-y-auto w-full mx-auto border border-brand-brown rounded">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
@@ -88,16 +94,13 @@ export default function AddBookName({
                 setSearchQuery(suggestion);
                 setSelectedBook(suggestion); // Set the selected book
               }}
-              className="p-2 cursor-pointer border-b border-gray-200"
+              className="p-2 cursor-pointer border-b border-brand-brown"
             >
               {suggestion}
             </li>
           ))}
         </ul>
       )}
-      <button className="p-2 mt-5 bg-blue-500 text-white border-none rounded cursor-pointer">
-        Add Book
-      </button>
     </form>
   );
 }
