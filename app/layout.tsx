@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Logo from "@/components/Logo";
 
 const myanmar = localFont({
   src: "./MyanmarKhyay.ttf",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body
         className={`${myanmar.variable} font-sans text-brand-brown antialiased min-h-screen`}
       >
+        <Logo />
         {children}
         <Navbar />
       </body>
