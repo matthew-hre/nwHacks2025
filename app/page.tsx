@@ -1,7 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { signOut } from "./login/actions";
-import FetchIsbns from "./fetchIsbnsserver"; // Import FetchIsbns
 
 export default async function Home() {
   const supabase = await createClient();
@@ -22,7 +21,6 @@ export default async function Home() {
             Your User ID is: <strong>{user.id}</strong>
           </p>
           {/* Render FetchIsbns and pass user.id */}
-          <FetchIsbns userId={user.id} />
           <form>
             <button formAction={signOut}>Sign Out</button>
           </form>
