@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Shelf from "@/components/Shelf";
+import MemoPad from "@/components/MemoPad";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -39,6 +40,7 @@ export default async function Home() {
   return (
     <div>
       <Shelf books={books} />
+      <MemoPad /> {/* Add MemoPad here */}
     </div>
   );
 }
