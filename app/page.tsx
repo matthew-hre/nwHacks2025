@@ -48,7 +48,7 @@ export default async function Home() {
     <div className="flex flex-col items-center min-h-screen">
       <Shelf books={books} />
       <p className="text-lg font-sans text-brand-brown mb-2">
-        your goal this year:
+        Your goal this month:
       </p>
       <p className="text-4xl font-sans text-brand-brown">
         {books.length > 0 ? `${books.length} / 7` : "start reading!"}
