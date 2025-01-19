@@ -10,17 +10,41 @@ export default async function Profile() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen py-24 space-y-4">
+    <div className="flex flex-col items-center w-full min-h-screen py-24 px-12 space-y-6">
       <img
         src={user?.user_metadata.avatar_url}
         alt="Avatar"
         className="rounded-full w-48 h-48"
       />
-      <h1 className="text-4xl font-bold">{user?.user_metadata.full_name}</h1>
+      <div className="flex flex-col w-full">
+        <p className="text-2xl font-sans text-brand-brown w-full px-6">name</p>
+        <h1 className="text-xl font-bold bg-white border-brand-brown border rounded-full pt-2 pb-1 px-4 w-full">
+          {user?.user_metadata.full_name}
+        </h1>
+      </div>
+      <div className="flex flex-col w-full">
+        <p className="text-2xl font-sans text-brand-brown w-full px-6">email</p>
+        <h1 className="text-xl font-bold bg-white border-brand-brown border rounded-full pt-2 pb-1 px-4 w-full">
+          {user?.user_metadata.email}
+        </h1>
+      </div>
       {user ? (
         <>
-          <form>
-            <button formAction={signOut}>Sign Out</button>
+          <form className="pt-8">
+            <button
+              formAction={signOut}
+              className="
+                bg-brand-brown
+                text-white
+                font-sans
+                text-xl
+                py-2
+                px-4
+                rounded-full
+                "
+            >
+              Sign Out
+            </button>
           </form>
         </>
       ) : (
