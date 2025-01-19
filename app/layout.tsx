@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import IsbnComponent from "./isbn"; // Import IsbnComponent from isbn.tsx
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +27,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Render IsbnComponent */}
-        <IsbnComponent />
-        {/* Render other child components */}
         {children}
       </body>
     </html>
