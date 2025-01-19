@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { signOut } from "@/app/login/actions";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
