@@ -19,7 +19,7 @@ export default async function Home() {
           books:isbn(
             book_name
           )
-        `
+        `,
       )
       .eq("id", user?.id); // Filter by the user ID
 
