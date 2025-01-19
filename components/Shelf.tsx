@@ -64,8 +64,8 @@ export default function Shelf({ books }: ShelfProps) {
   }, []);
 
   return (
-    <div>
-      <canvas ref={canvasRef} className="w-full p-12" height={200} />
+    <div className="w-full">
+      <canvas ref={canvasRef} className="w-full p-8" height={200} />
       <ul>
         {books.map((record, index: number) => (
           <li key={index}>
