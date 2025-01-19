@@ -7,6 +7,7 @@ import { CameraEnhancer } from "dynamsoft-camera-enhancer";
 import { PlayCallbackInfo } from "dynamsoft-camera-enhancer/dist/types/interface/playcallbackinfo";
 // @ts-expect-error - no types available
 import { TextResult, BarcodeReader } from "dynamsoft-javascript-barcode";
+import { redirect } from "next/navigation";
 
 interface ScannerProps {
   isActive?: boolean;
@@ -31,7 +32,7 @@ export default function BarcodeScannerComponent({
     setIsActive(!isActive);
   };
 
-  const onScanned = (results: TextResult[]) => {
+  const onScanned = async (results: TextResult[]) => {
     if (results.length > 0) {
       let text = "";
       for (let index = 0; index < results.length; index++) {
@@ -41,8 +42,10 @@ export default function BarcodeScannerComponent({
       }
       const formData = new FormData();
       formData.append("isbn", results[0].barcodeText);
-      addIsbnToDb(formData);
       setIsActive(false);
+      await addIsbnToDb(formData);
+
+      redirect("/");
     }
   };
 
@@ -140,7 +143,7 @@ const BarcodeScanner: React.FC<ScannerProps> = (props) => {
       if (decoding.current === false && reader.current && enhancer.current) {
         decoding.current = true;
         const results = await reader.current.decode(
-          enhancer.current.getFrame(),
+          enhancer.current.getFrame()
         );
         if (props.onScanned) {
           props.onScanned(results);
